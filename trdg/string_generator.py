@@ -4,7 +4,6 @@ from typing import List
 
 import wikipedia
 
-
 def create_strings_from_file(filename: str, count: int) -> List[str]:
     """
     Create all strings by reading lines in specified files
@@ -31,15 +30,16 @@ def create_strings_from_dict(
     """
     Create all strings by picking X random word in the dictionary
     """
-
+    print("lang d ", lang_dict )
     dict_len = len(lang_dict)
     strings = []
     for _ in range(0, count):
         current_string = ""
         for _ in range(0, rnd.randint(1, length) if allow_variable else length):
             current_string += lang_dict[rnd.randrange(dict_len)]
-            current_string += " "
-        strings.append(current_string[:-1])
+            # print("DEBUG CURRENT STRING: ", current_string)
+            current_string += " " 
+        strings.append(str(current_string[:-1]))
     return strings
 
 

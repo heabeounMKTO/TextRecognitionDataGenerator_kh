@@ -363,8 +363,12 @@ def main():
     if args.dict:
         lang_dict = []
         if os.path.isfile(args.dict):
-            with open(args.dict, "r", encoding="utf8", errors="ignore") as d:
-                lang_dict = [l for l in d.read().splitlines() if len(l) > 0]
+            if args.language == "km":
+                lang_dict.append("កញ្ញា")
+                lang_dict.append("គៀន")
+            else:
+                with open(args.dict, "r", encoding="utf-8", errors="ignore") as d:
+                    lang_dict = [l for l in d.read().splitlines() if len(l) > 0]
         else:
             sys.exit("Cannot open dict")
     else:
@@ -415,7 +419,7 @@ def main():
         strings = create_strings_from_dict(
             args.length, args.random, args.count, lang_dict
         )
-
+    print("STRINGS:  ", strings)
     if args.language == "ar":
         from arabic_reshaper import ArabicReshaper
         from bidi.algorithm import get_display

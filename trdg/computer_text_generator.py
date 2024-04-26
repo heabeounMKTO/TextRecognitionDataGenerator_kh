@@ -31,7 +31,6 @@ KM_TONE_MARKS = [
         "0x17d0",
         "0x17d3"
         ]
-
 KM_UNDER_VOWELS = [
         "0x17d2",
         "0x17bb",
@@ -45,6 +44,8 @@ KM_UPPER_VOWELS = [
         "0x17ba",
         "0x17d3",
         ]
+
+
 
 def generate(
     text: str,
@@ -97,12 +98,11 @@ def _compute_character_width(image_font: ImageFont, character: str) -> int:
     
     if len(character) == 1 and (
         "{0:#x}".format(ord(character))
-        in KM_TONE_MARKS + KM_UNDER_VOWELS + KM_UNDER_VOWELS + KM_UPPER_VOWELS
-    ):
+        in KM_TONE_MARKS + KM_UNDER_VOWELS + KM_UNDER_VOWELS + KM_UPPER_VOWELS     
+        ):
         return 0
     # Casting as int to preserve the old behavior
     return round(image_font.getlength(character))
-
 
 def _generate_horizontal_text(
     text: str,
