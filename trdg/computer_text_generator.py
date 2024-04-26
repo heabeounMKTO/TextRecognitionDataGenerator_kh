@@ -15,9 +15,36 @@ TH_TONE_MARKS = [
     "0xe4d",
     "0xe4e",
 ]
-TH_UNDER_VOWELS = ["0xe38", "0xe39", "\0xe3A"]
+TH_UNDER_VOWELS = ["0xe38", "0xe39", "0xe3A"]
 TH_UPPER_VOWELS = ["0xe31", "0xe34", "0xe35", "0xe36", "0xe37"]
 
+
+# Khmer unicode ref; https://jrgraphix.net/r/Unicode/1780-17FF
+KM_TONE_MARKS = [
+        "0x17c9",
+        "0x17cb",
+        "0x17cd",
+        "0x17cc",
+        "0x17ca",
+        "0x17ce",
+        "0x17cf",
+        "0x17d0",
+        "0x17d3"
+        ]
+
+KM_UNDER_VOWELS = [
+        "0x17d2",
+        "0x17bb",
+        "0x17bc",
+        "0x17bd"
+        ]
+KM_UPPER_VOWELS = [
+        "0x17b7",
+        "0x17b8",
+        "0x17b9",
+        "0x17ba",
+        "0x17d3",
+        ]
 
 def generate(
     text: str,
@@ -65,6 +92,12 @@ def _compute_character_width(image_font: ImageFont, character: str) -> int:
     if len(character) == 1 and (
         "{0:#x}".format(ord(character))
         in TH_TONE_MARKS + TH_UNDER_VOWELS + TH_UNDER_VOWELS + TH_UPPER_VOWELS
+    ):
+        return 0
+    
+    if len(character) == 1 and (
+        "{0:#x}".format(ord(character))
+        in KM_TONE_MARKS + KM_UNDER_VOWELS + KM_UNDER_VOWELS + KM_UPPER_VOWELS
     ):
         return 0
     # Casting as int to preserve the old behavior
