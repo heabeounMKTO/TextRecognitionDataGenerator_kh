@@ -363,11 +363,7 @@ def main():
     if args.dict:
         lang_dict = []
         if os.path.isfile(args.dict):
-            if args.language == "km":
-                lang_dict.append("កញ្ញា")
-                lang_dict.append("គៀន")
-            else:
-                with open(args.dict, "r", encoding="utf-8", errors="ignore") as d:
+                with open(args.dict, "r", encoding="utf8", errors="ignore") as d:
                     lang_dict = [l for l in d.read().splitlines() if len(l) > 0]
         else:
             sys.exit("Cannot open dict")
